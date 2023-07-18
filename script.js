@@ -1,15 +1,19 @@
-// const heightOutput = document.querySelector("#height");
-// const widthOutput = document.querySelector("#width");
+const boxes = document.querySelectorAll(".box");
 
-// function updateSize() {
-//   heightOutput.textContent = window.innerHeight;
-//   widthOutput.textContent = window.innerWidth;
-// }
+window.addEventListener("scroll", checkBoxes);
 
-// updateSize();
-// window.addEventListener("resize", updateSize);
+checkBoxes();
 
-const cont = document.querySelector(".container");
+function checkBoxes() {
+  const triggerBottom = (window.innerHeight / 5) * 4;
 
-const domrect = cont.getBoundingClientRect();
-console.log(domrect);
+  boxes.forEach((box) => {
+    const boxTop = box.getBoundingClientRect().top;
+
+    if (boxTop < triggerBottom) {
+      box.classList.add("show");
+    } else {
+      box.classList.remove("show");
+    }
+  });
+}
